@@ -6,41 +6,59 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
-//@Entity
-//@Table(name = "evento")
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name = "evento")
 public class Evento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
 	@NotEmpty
 	private String descricao;
 
 	@Column(name = "data_hora")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalDateTime dataHora;
 
 	private Integer duracao;
 
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	private StatusEvento status;
 
-	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "codigo_cidade")
 	private Cidade cidade;
 
-	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "codigo_empresa")
 	private Empresa empresa;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "evento_participante", joinColumns = {
+			@JoinColumn(name = "codigo_evento") }, inverseJoinColumns = { @JoinColumn(name = "codigo_participante") })
 	private List<Participante> participantes;
 
 	public Long getCodigo() {
