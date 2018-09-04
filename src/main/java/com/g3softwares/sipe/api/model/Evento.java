@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -56,7 +55,7 @@ public class Evento implements Serializable {
 	@JoinColumn(name = "codigo_empresa")
 	private Empresa empresa;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "evento_participante", joinColumns = {
 			@JoinColumn(name = "codigo_evento") }, inverseJoinColumns = { @JoinColumn(name = "codigo_participante") })
 	private List<Participante> participantes;
