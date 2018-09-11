@@ -25,7 +25,7 @@ import com.g3softwares.sipe.api.repository.TipoParticipanteRepository;
 import com.g3softwares.sipe.api.service.TipoParticipanteService;
 
 @RestController
-@RequestMapping("/tiposparticipantes")
+@RequestMapping("/tipos-participante")
 public class TipoParticipanteResource {
 
 	@Autowired
