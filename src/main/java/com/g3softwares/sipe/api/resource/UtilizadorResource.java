@@ -51,7 +51,7 @@ public class UtilizadorResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(utilizadorSalvo);
 	}
 
-	@GetMapping("/{codigo}")
+	@GetMapping("/{codigo}") 
 	public ResponseEntity<Utilizador> buscarPorCodigo(@PathVariable Long codigo) {
 		Utilizador utilizador = utilizadorRepository.findOne(codigo);
 		return utilizador != null ? ResponseEntity.ok(utilizador) : ResponseEntity.notFound().build();
