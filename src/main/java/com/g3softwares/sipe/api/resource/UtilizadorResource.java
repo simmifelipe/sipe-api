@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,11 +39,13 @@ public class UtilizadorResource {
 	private ApplicationEventPublisher publisher;
 
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_UTILIZADOR')")
 	public List<Utilizador> listar() {
 		return this.utilizadorRepository.findAll();
 	}
 
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_UTILIZADOR')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Utilizador> criar(@Valid @RequestBody Utilizador utilizador, HttpServletResponse response) {
 
@@ -51,7 +54,8 @@ public class UtilizadorResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(utilizadorSalvo);
 	}
 
-	@GetMapping("/{codigo}") 
+	@GetMapping("/{codigo}")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_UTILIZADOR')")
 	public ResponseEntity<Utilizador> buscarPorCodigo(@PathVariable Long codigo) {
 		Utilizador utilizador = utilizadorRepository.findOne(codigo);
 		return utilizador != null ? ResponseEntity.ok(utilizador) : ResponseEntity.notFound().build();
