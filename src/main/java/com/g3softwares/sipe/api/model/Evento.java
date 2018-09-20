@@ -47,6 +47,10 @@ public class Evento implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private StatusEvento status;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_evento")
+	private TipoEvento tipoEvento;
+
 	@ManyToOne
 	@JoinColumn(name = "codigo_cidade")
 	private Cidade cidade;
@@ -114,6 +118,14 @@ public class Evento implements Serializable {
 
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
+	}
+
+	public TipoEvento getTipoEvento() {
+		return tipoEvento;
+	}
+
+	public void setTipoEvento(TipoEvento tipoEvento) {
+		this.tipoEvento = tipoEvento;
 	}
 
 	public List<Participante> getParticipantes() {
