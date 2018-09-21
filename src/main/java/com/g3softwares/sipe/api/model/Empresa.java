@@ -33,6 +33,7 @@ public class Empresa implements Serializable {
 
 	@Column(name = "inscricao_municipal")
 	private Long inscricaoMunicipal;
+	
 	private Long ie;
 
 	@Embedded
@@ -108,6 +109,8 @@ public class Empresa implements Serializable {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
+	
+	
 
 	@Override
 	public int hashCode() {
