@@ -2,31 +2,28 @@ package com.g3softwares.sipe.api.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "permissao")
-public class Permissao implements Serializable {
+@Table(name = "modulo")
+public class Modulo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	@NotNull
+	@Column
+	@NotBlank
 	private String descricao;
-
-	@NotNull
-	private Integer nivel;
-
-	@ManyToOne
-	@JoinColumn(name = "codigo_modulo")
-	private Modulo modulo;
 
 	public Long getCodigo() {
 		return codigo;
@@ -42,22 +39,6 @@ public class Permissao implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Integer getNivel() {
-		return nivel;
-	}
-
-	public void setNivel(Integer nivel) {
-		this.nivel = nivel;
-	}
-
-	public Modulo getModulo() {
-		return modulo;
-	}
-
-	public void setModulo(Modulo modulo) {
-		this.modulo = modulo;
 	}
 
 	@Override
@@ -76,7 +57,7 @@ public class Permissao implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Permissao other = (Permissao) obj;
+		Modulo other = (Modulo) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

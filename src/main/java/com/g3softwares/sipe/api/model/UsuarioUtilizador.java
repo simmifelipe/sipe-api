@@ -1,6 +1,8 @@
 package com.g3softwares.sipe.api.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -36,6 +39,9 @@ public class UsuarioUtilizador implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codigo_utilizador")
 	private Utilizador utilizador;
+
+	@Transient
+	private List<Permissao> permissoes = new ArrayList<>();
 
 	public Long getCodigo() {
 		return codigo;
@@ -83,6 +89,14 @@ public class UsuarioUtilizador implements Serializable {
 
 	public void setUtilizador(Utilizador utilizador) {
 		this.utilizador = utilizador;
+	}
+
+	public List<Permissao> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(List<Permissao> permissoes) {
+		this.permissoes = permissoes;
 	}
 
 	@Override
