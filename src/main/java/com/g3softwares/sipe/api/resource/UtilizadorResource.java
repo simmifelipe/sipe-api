@@ -39,13 +39,13 @@ public class UtilizadorResource {
 	private ApplicationEventPublisher publisher;
 
 	@GetMapping
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_UTILIZADOR')")
+//	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_UTILIZADOR')")
 	public List<Utilizador> listar() {
 		return this.utilizadorRepository.findAll();
 	}
 
 	@PostMapping
-	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_UTILIZADOR')")
+//	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_UTILIZADOR')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Utilizador> criar(@Valid @RequestBody Utilizador utilizador, HttpServletResponse response) {
 
@@ -55,7 +55,7 @@ public class UtilizadorResource {
 	}
 
 	@GetMapping("/{codigo}")
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_UTILIZADOR')")
+//	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_UTILIZADOR')")
 	public ResponseEntity<Utilizador> buscarPorCodigo(@PathVariable Long codigo) {
 		Utilizador utilizador = utilizadorRepository.findOne(codigo);
 		return utilizador != null ? ResponseEntity.ok(utilizador) : ResponseEntity.notFound().build();
