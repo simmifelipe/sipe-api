@@ -25,7 +25,7 @@ import com.g3softwares.sipe.api.repository.UsuarioUtilizadorRepository;
 import com.g3softwares.sipe.api.service.UsuarioUtilizadorService;
 
 @RestController
-@RequestMapping("/usuario-utilizador")
+@RequestMapping("/usuarios")
 public class UsuarioUtilizadorResource {
 
 	@Autowired
