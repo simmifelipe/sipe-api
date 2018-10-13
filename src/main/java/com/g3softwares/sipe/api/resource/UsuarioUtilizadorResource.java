@@ -47,7 +47,7 @@ public class UsuarioUtilizadorResource {
 	public ResponseEntity<UsuarioUtilizador> criar(@Valid @RequestBody UsuarioUtilizador usuarioUtilizador,
 			HttpServletResponse response) {
 
-		UsuarioUtilizador usuarioUtilizadorSalvo = usuarioUtilizadorRepository.save(usuarioUtilizador);
+		UsuarioUtilizador usuarioUtilizadorSalvo = usuarioUtilizadorService.salvar(usuarioUtilizador);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, usuarioUtilizadorSalvo.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioUtilizadorSalvo);
 	}

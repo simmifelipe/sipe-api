@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.g3softwares.sipe.api.model.UsuarioUtilizador;
 import com.g3softwares.sipe.api.repository.UsuarioUtilizadorRepository;
+import com.g3softwares.sipe.api.security.util.EncodePassword;
 
 @Service
 public class UsuarioUtilizadorService {
@@ -28,5 +29,12 @@ public class UsuarioUtilizadorService {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return usuarioUtilizadorSalvo;
+	}
+	
+	public UsuarioUtilizador salvar(UsuarioUtilizador usuarioUtilizador) {
+		
+		usuarioUtilizador.setSenha(new EncodePassword().encode(usuarioUtilizador.getSenha()));
+		return this.usuarioUtilizadorRepository.save(usuarioUtilizador);
+		
 	}
 }
