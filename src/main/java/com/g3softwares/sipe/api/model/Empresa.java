@@ -1,14 +1,18 @@
 package com.g3softwares.sipe.api.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -33,7 +37,7 @@ public class Empresa implements Serializable {
 
 	@Column(name = "inscricao_municipal")
 	private Long inscricaoMunicipal;
-	
+
 	private Long ie;
 
 	@Embedded
@@ -45,6 +49,10 @@ public class Empresa implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codigo_utilizador")
 	private Utilizador utilizador;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "empresa_modulo", joinColumns = @JoinColumn(name = "codigo_empresa"), inverseJoinColumns = @JoinColumn(name = "codigo_modulo"))
+	private List<Modulo> modulos;
 
 	public Long getCodigo() {
 		return codigo;
@@ -109,8 +117,14 @@ public class Empresa implements Serializable {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
-	
-	
+
+	public List<Modulo> getModulos() {
+		return modulos;
+	}
+
+	public void setModulos(List<Modulo> modulos) {
+		this.modulos = modulos;
+	}
 
 	@Override
 	public int hashCode() {
