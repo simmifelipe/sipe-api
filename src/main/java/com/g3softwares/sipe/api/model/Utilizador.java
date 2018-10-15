@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -62,6 +61,8 @@ public class Utilizador implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "utilizador_modulo", joinColumns = @JoinColumn(name = "codigo_utilizador"), inverseJoinColumns = @JoinColumn(name = "codigo_modulo"))
 	private List<Modulo> modulos;
+	
+	
 
 	public Long getCodigo() {
 		return codigo;
