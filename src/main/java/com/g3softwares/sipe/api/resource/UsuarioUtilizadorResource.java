@@ -41,7 +41,7 @@ public class UsuarioUtilizadorResource {
 	public List<UsuarioUtilizador> listar() {
 		return this.usuarioUtilizadorRepository.findAll();
 	}
-
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<UsuarioUtilizador> criar(@Valid @RequestBody UsuarioUtilizador usuarioUtilizador,

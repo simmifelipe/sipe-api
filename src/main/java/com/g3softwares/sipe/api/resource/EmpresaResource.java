@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.g3softwares.sipe.api.event.RecursoCriadoEvent;
 import com.g3softwares.sipe.api.model.Empresa;
+import com.g3softwares.sipe.api.model.Utilizador;
 import com.g3softwares.sipe.api.repository.EmpresaRepository;
 import com.g3softwares.sipe.api.service.EmpresaService;
 
@@ -42,7 +43,12 @@ public class EmpresaResource {
 		return this.empresaRepository.findAll();
 	}
 
-	@PostMapping
+	@GetMapping("/utilizador/{codigo}")
+	public List<Empresa> buscarPorUtilizador(Utilizador utilizador) {
+		return this.empresaRepository.findByUtilizador(utilizador);
+	}
+
+	@PostMapping()
 	public ResponseEntity<Empresa> criar(@Valid @RequestBody Empresa empresa, HttpServletResponse response) {
 
 		Empresa empresaSalva = this.empresaRepository.save(empresa);

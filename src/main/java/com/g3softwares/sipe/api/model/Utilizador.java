@@ -2,14 +2,18 @@ package com.g3softwares.sipe.api.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -55,6 +59,10 @@ public class Utilizador implements Serializable {
 	@JoinColumn(name = "codigo_cidade")
 	private Cidade cidade;
 
+	@ManyToMany
+	@JoinTable(name = "utilizador_modulo", joinColumns = @JoinColumn(name = "codigo_utilizador"), inverseJoinColumns = @JoinColumn(name = "codigo_modulo"))
+	private List<Modulo> modulos;
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -64,7 +72,7 @@ public class Utilizador implements Serializable {
 	}
 
 	public String getNome() {
-		return nome;
+		return nome; 
 	}
 
 	public void setNome(String nome) {
@@ -141,6 +149,14 @@ public class Utilizador implements Serializable {
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	public List<Modulo> getModulos() {
+		return modulos;
+	}
+
+	public void setModulos(List<Modulo> modulos) {
+		this.modulos = modulos;
 	}
 
 	@Override

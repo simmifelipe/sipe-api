@@ -50,10 +50,6 @@ public class Empresa implements Serializable {
 	@JoinColumn(name = "codigo_utilizador")
 	private Utilizador utilizador;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "empresa_modulo", joinColumns = @JoinColumn(name = "codigo_empresa"), inverseJoinColumns = @JoinColumn(name = "codigo_modulo"))
-	private List<Modulo> modulos;
-
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -116,14 +112,6 @@ public class Empresa implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
-	}
-
-	public List<Modulo> getModulos() {
-		return modulos;
-	}
-
-	public void setModulos(List<Modulo> modulos) {
-		this.modulos = modulos;
 	}
 
 	@Override
