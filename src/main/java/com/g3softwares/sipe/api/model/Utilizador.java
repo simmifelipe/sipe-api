@@ -59,7 +59,11 @@ public class Utilizador implements Serializable {
 	private Cidade cidade;
 
 	@ManyToMany
-	@JoinTable(name = "utilizador_modulo", joinColumns = @JoinColumn(name = "codigo_utilizador"), inverseJoinColumns = @JoinColumn(name = "codigo_modulo"))
+	@JoinTable(
+			name = "utilizador_modulo", 
+			joinColumns = @JoinColumn(name = "codigo_utilizador"), 
+			inverseJoinColumns = @JoinColumn(name = "codigo_modulo")
+	)
 	private List<Modulo> modulos;
 	
 	

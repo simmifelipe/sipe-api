@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.g3softwares.sipe.api.model.UsuarioUtilizador;
+import com.g3softwares.sipe.api.model.Usuario;
 import com.g3softwares.sipe.api.repository.UsuarioUtilizadorRepository;
 import com.g3softwares.sipe.api.security.util.EncodePassword;
 
@@ -15,23 +15,23 @@ public class UsuarioUtilizadorService {
 	@Autowired
 	private UsuarioUtilizadorRepository usuarioUtilizadorRepository;
 
-	public UsuarioUtilizador atualizar(Long codigo, UsuarioUtilizador usuarioUtilizador) {
+	public Usuario atualizar(Long codigo, Usuario usuarioUtilizador) {
 
-		UsuarioUtilizador usuarioUtilizadorSalvo = buscarUsuarioUtilizadorPeloCodigo(codigo);
+		Usuario usuarioUtilizadorSalvo = buscarUsuarioUtilizadorPeloCodigo(codigo);
 		BeanUtils.copyProperties(usuarioUtilizador, usuarioUtilizadorSalvo, "codigo");
 		return usuarioUtilizadorRepository.save(usuarioUtilizadorSalvo);
 	}
 
-	public UsuarioUtilizador buscarUsuarioUtilizadorPeloCodigo(Long codigo) {
+	public Usuario buscarUsuarioUtilizadorPeloCodigo(Long codigo) {
 
-		UsuarioUtilizador usuarioUtilizadorSalvo = usuarioUtilizadorRepository.findOne(codigo);
+		Usuario usuarioUtilizadorSalvo = usuarioUtilizadorRepository.findOne(codigo);
 		if (usuarioUtilizadorSalvo == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return usuarioUtilizadorSalvo;
 	}
 	
-	public UsuarioUtilizador salvar(UsuarioUtilizador usuarioUtilizador) {
+	public Usuario salvar(Usuario usuarioUtilizador) {
 		
 		usuarioUtilizador.setSenha(new EncodePassword().encode(usuarioUtilizador.getSenha()));
 		return this.usuarioUtilizadorRepository.save(usuarioUtilizador);
