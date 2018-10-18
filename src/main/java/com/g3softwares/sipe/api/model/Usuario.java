@@ -10,13 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 
 @Entity
-public class UsuarioUtilizador implements Serializable {
+@Table(name = "usuario_utilizador")
+public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -98,6 +100,7 @@ public class UsuarioUtilizador implements Serializable {
 	public void setPermissoes(List<Permissao> permissoes) {
 		this.permissoes = permissoes;
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -115,7 +118,7 @@ public class UsuarioUtilizador implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UsuarioUtilizador other = (UsuarioUtilizador) obj;
+		Usuario other = (Usuario) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g3softwares.sipe.api.event.RecursoCriadoEvent;
-import com.g3softwares.sipe.api.model.UsuarioUtilizador;
+import com.g3softwares.sipe.api.model.Usuario;
 import com.g3softwares.sipe.api.repository.UsuarioUtilizadorRepository;
 import com.g3softwares.sipe.api.service.UsuarioUtilizadorService;
 
@@ -38,23 +38,23 @@ public class UsuarioUtilizadorResource {
 	private ApplicationEventPublisher publisher;
 
 	@GetMapping
-	public List<UsuarioUtilizador> listar() {
+	public List<Usuario> listar() {
 		return this.usuarioUtilizadorRepository.findAll();
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<UsuarioUtilizador> criar(@Valid @RequestBody UsuarioUtilizador usuarioUtilizador,
+	public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuarioUtilizador,
 			HttpServletResponse response) {
 
-		UsuarioUtilizador usuarioUtilizadorSalvo = usuarioUtilizadorService.salvar(usuarioUtilizador);
+		Usuario usuarioUtilizadorSalvo = usuarioUtilizadorService.salvar(usuarioUtilizador);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, usuarioUtilizadorSalvo.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioUtilizadorSalvo);
 	}
 
 	@GetMapping("/{codigo}")
-	public ResponseEntity<UsuarioUtilizador> buscarPorCodigo(@PathVariable Long codigo) {
-		UsuarioUtilizador usuarioUtilizador = usuarioUtilizadorRepository.findOne(codigo);
+	public ResponseEntity<Usuario> buscarPorCodigo(@PathVariable Long codigo) {
+		Usuario usuarioUtilizador = usuarioUtilizadorRepository.findOne(codigo);
 		return usuarioUtilizador != null ? ResponseEntity.ok(usuarioUtilizador) : ResponseEntity.notFound().build();
 	}
 
@@ -65,9 +65,9 @@ public class UsuarioUtilizadorResource {
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<UsuarioUtilizador> atualizar(@PathVariable Long codigo,
-			@Valid @RequestBody UsuarioUtilizador usuarioUtilizador) {
-		UsuarioUtilizador usuarioUtilizadorSalvo = usuarioUtilizadorService.atualizar(codigo, usuarioUtilizador);
+	public ResponseEntity<Usuario> atualizar(@PathVariable Long codigo,
+			@Valid @RequestBody Usuario usuarioUtilizador) {
+		Usuario usuarioUtilizadorSalvo = usuarioUtilizadorService.atualizar(codigo, usuarioUtilizador);
 		return ResponseEntity.ok(usuarioUtilizadorSalvo);
 	}
 
