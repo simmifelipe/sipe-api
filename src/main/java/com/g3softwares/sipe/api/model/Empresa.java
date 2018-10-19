@@ -1,6 +1,7 @@
 package com.g3softwares.sipe.api.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -45,6 +48,13 @@ public class Empresa implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codigo_utilizador")
 	private Utilizador utilizador;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "empresa_modulo", 
+			joinColumns = @JoinColumn(name = "codigo_empresa"), 
+			inverseJoinColumns = @JoinColumn(name = "codigo_modulo"))
+	private List<Modulo> modulos;
 
 	public Long getCodigo() {
 		return codigo;
