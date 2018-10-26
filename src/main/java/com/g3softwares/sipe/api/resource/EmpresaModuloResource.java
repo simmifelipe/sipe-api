@@ -45,7 +45,7 @@ public class EmpresaModuloResource {
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, empresaModuloSalva.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(empresaModuloSalva);
 	}
-	
+
 	@GetMapping("/{codigo}")
 	public ResponseEntity<EmpresaModulo> buscarPorCodigo(@PathVariable Long codigo) {
 
@@ -56,7 +56,7 @@ public class EmpresaModuloResource {
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
-		
+
 		this.empresaModuloRepository.delete(codigo);
 	}
 

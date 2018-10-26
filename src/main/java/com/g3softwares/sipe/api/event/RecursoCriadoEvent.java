@@ -10,11 +10,18 @@ public class RecursoCriadoEvent extends ApplicationEvent {
 
 	private HttpServletResponse response;
 	private Long codigo;
+	private Object chavePk;
 
 	public RecursoCriadoEvent(Object source, HttpServletResponse response, Long codigo) {
 		super(source);
 		this.response = response;
 		this.codigo = codigo;
+	}
+
+	public RecursoCriadoEvent(Object source, HttpServletResponse response, Object chavePk) {
+		super(source);
+		this.response = response;
+		this.chavePk = chavePk;
 	}
 
 	public HttpServletResponse getResponse() {
@@ -23,6 +30,10 @@ public class RecursoCriadoEvent extends ApplicationEvent {
 
 	public Long getCodigo() {
 		return codigo;
+	}
+
+	public Object getChavePk() {
+		return chavePk;
 	}
 
 }

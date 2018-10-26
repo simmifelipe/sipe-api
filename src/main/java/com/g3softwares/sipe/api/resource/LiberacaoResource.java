@@ -18,15 +18,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.g3softwares.sipe.api.event.RecursoCriadoEvent;
 import com.g3softwares.sipe.api.model.Liberacao;
 import com.g3softwares.sipe.api.repository.LiberacaoRepository;
+import com.g3softwares.sipe.api.service.LiberacaoService;
 
 @RestController
-@RequestMapping("/libercoes")
+@RequestMapping("/liberacoes")
 public class LiberacaoResource {
 
 	@Autowired
 	private LiberacaoRepository liberacaoRepository;
+
+	@Autowired
+	private LiberacaoService liberacaoService;
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -40,15 +45,13 @@ public class LiberacaoResource {
 	public ResponseEntity<Liberacao> criar(@Valid @RequestBody Liberacao liberacao, HttpServletResponse response) {
 
 		Liberacao liberacaoSalva = this.liberacaoRepository.save(liberacao);
-//		publisher.publishEvent(new RecursoCriadoEvent(this, response, liberacaoSalva.getCodigo()));
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, liberacaoSalva.getLiberacaoPK()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(liberacaoSalva);
 	}
 
-	@GetMapping("/{codigo}")
-	public ResponseEntity<Liberacao> buscarPorCodigo(@PathVariable Long codigo) {
-
-		Liberacao liberacao = this.liberacaoRepository.findOne(codigo);
-		return liberacao != null ? ResponseEntity.ok(liberacao) : ResponseEntity.notFound().build();
+	@GetMapping("/usuario/{codigo}")
+	public List<Liberacao> buscarPorUsuario(@PathVariable Long codigo) {
+		return this.liberacaoService.buscarPorUsuario(codigo);
 	}
 
 	@DeleteMapping("/{codigo}")

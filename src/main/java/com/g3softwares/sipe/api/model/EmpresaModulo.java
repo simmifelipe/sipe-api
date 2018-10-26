@@ -28,6 +28,18 @@ public class EmpresaModulo implements Serializable {
 	@JoinColumn(name = "codigo_modulo")
 	private Modulo modulo;
 
+	public EmpresaModulo(Long codigo, Empresa empresa, Modulo modulo) {
+		super();
+		this.codigo = codigo;
+		this.empresa = empresa;
+		this.modulo = modulo;
+	}
+
+	public EmpresaModulo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}
