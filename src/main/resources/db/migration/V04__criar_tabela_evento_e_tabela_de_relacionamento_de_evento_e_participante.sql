@@ -5,6 +5,7 @@ CREATE TABLE evento (
 	data_hora DATETIME NULL,
 	duracao INTEGER NULL,
 	status VARCHAR(50) NULL,
+	tipo_evento VARCHAR(30) NOT NULL,
 	codigo_cidade BIGINT(20) NOT NULL,
 	codigo_empresa BIGINT(20) NOT NULL,
 	FOREIGN KEY (codigo_cidade) REFERENCES cidade(codigo),

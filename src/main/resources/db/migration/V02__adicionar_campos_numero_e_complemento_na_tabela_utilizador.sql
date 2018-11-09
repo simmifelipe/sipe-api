@@ -1,2 +1,0 @@
-
-ALTER TABLE utilizador ADD COLUMN numero VARCHAR(10) NULL, ADD COLUMN complemento VARCHAR(255) NULL;

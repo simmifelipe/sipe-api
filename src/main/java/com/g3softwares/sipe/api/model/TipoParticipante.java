@@ -6,10 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -26,11 +23,6 @@ public class TipoParticipante implements Serializable {
 	@NotEmpty
 	private String descricao;
 
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "codigo_utilizador")
-	private Utilizador utilizador;
-
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -45,14 +37,6 @@ public class TipoParticipante implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Utilizador getUtilizador() {
-		return utilizador;
-	}
-
-	public void setUtilizador(Utilizador utilizador) {
-		this.utilizador = utilizador;
 	}
 
 	@Override
