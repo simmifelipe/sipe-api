@@ -13,13 +13,7 @@ insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, 
 insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (1, 4, 1);
 insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (1, 5, 1);
 insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (1, 6, 1);
-insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (1, 7, 1);
-insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (1, 8, 1);
-insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (1, 9, 1);
-insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (1, 10, 1);
 
-insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 1, 2);
-insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 2, 3);
-insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 3, 4);
+insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 9, 4);
 insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 6, 2);
 insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 8, 3);
