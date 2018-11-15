@@ -15,5 +15,5 @@ insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, 
 insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (1, 6, 1);
 
 insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 9, 4);
-insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 6, 2);
+insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 7, 2);
 insert into usuario_empresa_modulo_nivel(codigo_usuario, codigo_empresa_modulo, nivel) values (2, 8, 3);
