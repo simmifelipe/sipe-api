@@ -6,5 +6,4 @@ import com.g3softwares.sipe.api.model.EmpresaModulo;
 
 public interface EmpresaModuloRepository extends JpaRepository<EmpresaModulo, Long> {
 
-
 }

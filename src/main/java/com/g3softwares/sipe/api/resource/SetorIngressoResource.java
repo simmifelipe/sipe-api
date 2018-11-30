@@ -18,46 +18,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.g3softwares.sipe.api.model.PermissaoExcecao;
-import com.g3softwares.sipe.api.repository.PermissaoExcecaoRepository;
+import com.g3softwares.sipe.api.event.RecursoCriadoEvent;
+import com.g3softwares.sipe.api.model.SetorIngresso;
+import com.g3softwares.sipe.api.repository.SetorIngressoRepository;
 
 @RestController
-@RequestMapping("/permissoes-excecoes")
-public class PermissaoExcecaoResource {
+@RequestMapping("/setores-ingresso")
+public class SetorIngressoResource {
 
 	@Autowired
-	private PermissaoExcecaoRepository permissaoExcecaoRepository;
+	private SetorIngressoRepository setorIngressoRepository;
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
 	@GetMapping
-	public List<PermissaoExcecao> listar() {
-		return this.permissaoExcecaoRepository.findAll();
+	public List<SetorIngresso> listar() {
+		return this.setorIngressoRepository.findAll();
 	}
 
 	@PostMapping
-	public ResponseEntity<PermissaoExcecao> criar(@Valid @RequestBody PermissaoExcecao permissaoExcecao,
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<SetorIngresso> criar(@Valid @RequestBody SetorIngresso setorIngresso,
 			HttpServletResponse response) {
 
-		PermissaoExcecao permissaoExcecaoSalva = this.permissaoExcecaoRepository.save(permissaoExcecao);
-		// publisher.publishEvent(new RecursoCriadoEvent(this, response,
-		// permissaoExcecaoSalva.getCodigo()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(permissaoExcecaoSalva);
+		SetorIngresso setorIngressoSalvo = setorIngressoRepository.save(setorIngresso);
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, setorIngressoSalvo.getCodigo()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(setorIngressoSalvo);
 	}
 
 	@GetMapping("/{codigo}")
-	public ResponseEntity<PermissaoExcecao> buscarPorCodigo(@PathVariable Long codigo) {
-
-		PermissaoExcecao permissaoExcecao = this.permissaoExcecaoRepository.findOne(codigo);
-		return permissaoExcecao != null ? ResponseEntity.ok(permissaoExcecao) : ResponseEntity.notFound().build();
+	public ResponseEntity<SetorIngresso> buscarPorCodigo(@PathVariable Long codigo) {
+		SetorIngresso setorIngresso = setorIngressoRepository.findOne(codigo);
+		return setorIngresso != null ? ResponseEntity.ok(setorIngresso) : ResponseEntity.notFound().build();
 	}
 
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
-
-		this.permissaoExcecaoRepository.delete(codigo);
+		setorIngressoRepository.delete(codigo);
 	}
 
 }

@@ -46,7 +46,7 @@ public class ModuloResource {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Modulo> criar(@Valid @RequestBody Modulo modulo, HttpServletResponse response) {
 
-		Modulo moduloSalvo = moduloRepository.save(modulo);
+		Modulo moduloSalvo = moduloService.salvar(modulo);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, moduloSalvo.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(moduloSalvo);
 	}

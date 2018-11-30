@@ -51,7 +51,7 @@ public class EmpresaResource {
 	@PostMapping()
 	public ResponseEntity<Empresa> criar(@Valid @RequestBody Empresa empresa, HttpServletResponse response) {
 
-		Empresa empresaSalva = this.empresaRepository.save(empresa);
+		Empresa empresaSalva = this.empresaService.salvar(empresa);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, empresaSalva.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(empresaSalva);
 	}

@@ -1,6 +1,7 @@
 package com.g3softwares.sipe.api.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -76,7 +77,7 @@ public class Participante implements Serializable {
 	@JoinTable(name = "participante_tipo_participante", joinColumns = {
 			@JoinColumn(name = "codigo_participante", referencedColumnName = "codigo") }, inverseJoinColumns = {
 					@JoinColumn(name = "codigo_tipo_participante", referencedColumnName = "codigo") })
-	private List<TipoParticipante> tiposParticipantes;
+	private List<TipoParticipante> tiposParticipantes = new ArrayList<>();
 
 	private Boolean ativo;
 

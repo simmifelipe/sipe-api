@@ -52,6 +52,7 @@ public class EmpresaModuloResource {
 		EmpresaModulo empresaModulo = this.empresaModuloRepository.findOne(codigo);
 		return empresaModulo != null ? ResponseEntity.ok(empresaModulo) : ResponseEntity.notFound().build();
 	}
+	
 
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

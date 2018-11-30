@@ -68,7 +68,8 @@ public class EmpresaModulo implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
+		result = prime * result + ((modulo == null) ? 0 : modulo.hashCode());
 		return result;
 	}
 
@@ -81,12 +82,19 @@ public class EmpresaModulo implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		EmpresaModulo other = (EmpresaModulo) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
+		if (empresa == null) {
+			if (other.empresa != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!empresa.equals(other.empresa))
+			return false;
+		if (modulo == null) {
+			if (other.modulo != null)
+				return false;
+		} else if (!modulo.equals(other.modulo))
 			return false;
 		return true;
 	}
+
+	
 
 }
