@@ -40,6 +40,14 @@ public class Empresa implements Serializable {
 
 	@Embedded
 	private Endereco endereco;
+	
+	private String email;
+	
+	private String telefone;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_cidade")
+	private Cidade cidade;
 
 	@NotNull
 	private Boolean ativo;
@@ -114,6 +122,38 @@ public class Empresa implements Serializable {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public List<Modulo> getModulos() {
+		return modulos;
+	}
+
+	public void setModulos(List<Modulo> modulos) {
+		this.modulos = modulos;
+	}
 
 	@Override
 	public int hashCode() {
@@ -145,5 +185,10 @@ public class Empresa implements Serializable {
 			return false;
 		return true;
 	}
+
+	
+
+	
+	
 
 }
