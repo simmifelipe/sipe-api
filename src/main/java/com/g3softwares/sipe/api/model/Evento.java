@@ -67,7 +67,7 @@ public class Evento implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "evento_plano_midia", joinColumns = {
 			@JoinColumn(name = "codigo_evento") }, inverseJoinColumns = { @JoinColumn(name = "codigo_plano_midia") })
-	private List<Participante> planosMidia;
+	private List<PlanoMidia> planosMidia;
 
 	public Long getCodigo() {
 		return codigo;
@@ -141,11 +141,11 @@ public class Evento implements Serializable {
 		this.participantes = participantes;
 	}
 
-	public List<Participante> getPlanosMidia() {
+	public List<PlanoMidia> getPlanosMidia() {
 		return planosMidia;
 	}
 
-	public void setPlanosMidia(List<Participante> planosMidia) {
+	public void setPlanosMidia(List<PlanoMidia> planosMidia) {
 		this.planosMidia = planosMidia;
 	}
 
