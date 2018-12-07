@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.g3softwares.sipe.api.event.RecursoCriadoEvent;
 import com.g3softwares.sipe.api.model.SetorIngresso;
+import com.g3softwares.sipe.api.model.Utilizador;
 import com.g3softwares.sipe.api.repository.SetorIngressoRepository;
 
 @RestController
@@ -35,6 +36,11 @@ public class SetorIngressoResource {
 	@GetMapping
 	public List<SetorIngresso> listar() {
 		return this.setorIngressoRepository.findAll();
+	}
+	
+	@GetMapping("/utilizador/{codigo}")
+	public List<SetorIngresso> buscarPorUtilizador(Utilizador utilizador) {
+		return this.setorIngressoRepository.findByUtilizador(utilizador);
 	}
 
 	@PostMapping
