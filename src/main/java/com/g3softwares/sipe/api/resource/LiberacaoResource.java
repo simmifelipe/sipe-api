@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g3softwares.sipe.api.event.RecursoCriadoEvent;
+import com.g3softwares.sipe.api.model.EmpresaUsuario;
 import com.g3softwares.sipe.api.model.Liberacao;
 import com.g3softwares.sipe.api.repository.LiberacaoRepository;
 import com.g3softwares.sipe.api.service.LiberacaoService;
@@ -52,6 +53,11 @@ public class LiberacaoResource {
 	@GetMapping("/usuario/{codigo}")
 	public List<Liberacao> buscarPorUsuario(@PathVariable Long codigo) {
 		return this.liberacaoService.buscarPorUsuario(codigo);
+	}
+	
+	@GetMapping("/usuario/{usuario}/disponiveis")
+	public List<EmpresaUsuario> liberacoesDisponiveis(@PathVariable Long usuario) {
+		return this.liberacaoService.carregarLiberacoesDisponiveis(usuario);
 	}
 
 	@DeleteMapping("/{codigo}")

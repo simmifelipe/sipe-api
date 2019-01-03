@@ -44,6 +44,9 @@ public class Usuario implements Serializable {
 
 	@Transient
 	private List<Permissao> permissoes = new ArrayList<>();
+	
+	@Transient
+	private List<Liberacao> liberacoes = new ArrayList<>();
 
 	public Long getCodigo() {
 		return codigo;
@@ -99,6 +102,15 @@ public class Usuario implements Serializable {
 
 	public void setPermissoes(List<Permissao> permissoes) {
 		this.permissoes = permissoes;
+	}
+	
+
+	public List<Liberacao> getLiberacoes() {
+		return liberacoes;
+	}
+
+	public void setLiberacoes(List<Liberacao> liberacoes) {
+		this.liberacoes = liberacoes;
 	}
 
 	@Override

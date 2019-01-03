@@ -62,4 +62,11 @@ public class Liberacao implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Liberacao [liberacaoPK=" + liberacaoPK + ", nivel=" + nivel + "]";
+	}
+	
+	
+
 }

@@ -41,11 +41,10 @@ public class UsuarioUtilizadorResource {
 	public List<Usuario> listar() {
 		return this.usuarioUtilizadorRepository.findAll();
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuarioUtilizador,
-			HttpServletResponse response) {
+	public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuarioUtilizador, HttpServletResponse response) {
 
 		Usuario usuarioUtilizadorSalvo = usuarioUtilizadorService.salvar(usuarioUtilizador);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, usuarioUtilizadorSalvo.getCodigo()));
@@ -65,8 +64,7 @@ public class UsuarioUtilizadorResource {
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Usuario> atualizar(@PathVariable Long codigo,
-			@Valid @RequestBody Usuario usuarioUtilizador) {
+	public ResponseEntity<Usuario> atualizar(@PathVariable Long codigo, @Valid @RequestBody Usuario usuarioUtilizador) {
 		Usuario usuarioUtilizadorSalvo = usuarioUtilizadorService.atualizar(codigo, usuarioUtilizador);
 		return ResponseEntity.ok(usuarioUtilizadorSalvo);
 	}
