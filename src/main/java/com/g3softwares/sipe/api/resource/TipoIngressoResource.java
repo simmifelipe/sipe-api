@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g3softwares.sipe.api.event.RecursoCriadoEvent;
+import com.g3softwares.sipe.api.model.SetorIngresso;
 import com.g3softwares.sipe.api.model.TipoIngresso;
+import com.g3softwares.sipe.api.model.Utilizador;
 import com.g3softwares.sipe.api.repository.TipoIngressoRepository;
 
 @RestController
@@ -35,6 +37,11 @@ public class TipoIngressoResource {
 	@GetMapping
 	public List<TipoIngresso> listar() {
 		return this.tipoIngressoRepository.findAll();
+	}
+
+	@GetMapping("/utilizador/{codigo}")
+	public List<TipoIngresso> buscarPorUtilizador(Utilizador utilizador) {
+		return this.tipoIngressoRepository.findByUtilizador(utilizador);
 	}
 
 	@PostMapping
